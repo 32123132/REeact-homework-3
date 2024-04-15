@@ -6,7 +6,7 @@ const card =[
         {id: 2, prew : 'React', info : 'You like React is ...', procent : 50}
     ];
 
-export function Card(props = -1){
+export function Card(){
     const [value,setValue] = useState('')
     const [value1,setValue1] = useState('')
     const [value2,setValue2] = useState('');
@@ -27,6 +27,18 @@ export function Card(props = -1){
         setValue1('');
         setValue2('');
     }
+    function onDelClick(props){
+        let count =0
+        
+        array.forEach(obj => {
+            if(obj.id === props){
+                const newArray= array.slice(0,count).concat(array.slice(count+1,array.length))
+                setArray(newArray)
+                
+            }
+            count++
+            });
+    }
     
 
 
@@ -44,9 +56,11 @@ export function Card(props = -1){
                 <button onClick={onAddClick}>
                     ADD
                 </button>
-            </div>      
+            </div>  
+                
             {
-                array.map(item => (<Print key = {item.id} prew={item.prew} info={item.info} procent={item.procent}/>))
+                
+                array.map(item => (<><Print key = {item.id} prew={item.prew} info={item.info} procent={item.procent}/> <button onClick={(props)=> onDelClick(item.id)}>Del</button> </>))
             }
         </>
     )
