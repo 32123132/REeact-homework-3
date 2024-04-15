@@ -10,7 +10,7 @@ export function App() {
   return (
     <>
       <Call/>
-      <Card/>
+      
     </>
   )
 }
