@@ -1,12 +1,14 @@
 import { useState } from "react";
 import { Print } from "./print_card";
+import { Filtermore } from "./filter";
 const card =[
         {id: 0, prew : 'JS', info : 'how well do youn know JS', procent : 50},
-        {id: 1, prew : 'Node', info : 'You are knon Node?', procent : 50},
+        {id: 1, prew : 'Node', info : 'You are knon Node?', procent : 60},
         {id: 2, prew : 'React', info : 'You like React is ...', procent : 50}
     ];
 
 export function Card(){
+    const [state, setState] = useState('')
     const [value,setValue] = useState('')
     const [value1,setValue1] = useState('')
     const [value2,setValue2] = useState('');
@@ -21,7 +23,7 @@ export function Card(){
         setValue2(event.target.value);
     };
     function onAddClick(){
-        const newArray = [...array,{id: array.length,prew:value,info:value1,procent:value2}]
+        const newArray = [...array,{id: array.length,prew:value,info:value1,procent:Number(value2)}]
         setArray(newArray);
         setValue('');
         setValue1('');
@@ -39,14 +41,18 @@ export function Card(){
             count++
             });
     }
+    function fixState(){
+        setState('more')
+    }
+    function fixStats(){
+        setState('less')
+    }
     
-
-
-
     
-
     return(
         <>  
+            <button onClick = {fixState}> more 50 </button>
+            <button onClick = {fixStats}> less 50 </button>
             <div>
                 <input  value={value} type="text" onChange={prew}/>
                 <input  value={value1} type="text" onChange={info}/>    
@@ -58,11 +64,9 @@ export function Card(){
                 </button>
             </div>  
                 
-            {
-                
-                array.map(item => (<><Print key = {item.id} prew={item.prew} info={item.info} procent={item.procent}/> <button onClick={(props)=> onDelClick(item.id)}>Del</button> </>))
-            }
+            
         </>
     )
+
 };
 
