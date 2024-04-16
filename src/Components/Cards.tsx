@@ -3,7 +3,7 @@ import { Print } from "./print_card";
 import { Filtermore } from "./filter";
 const card =[
         {id: 0, prew : 'JS', info : 'how well do youn know JS', procent : 50},
-        {id: 1, prew : 'Node', info : 'You are knon Node?', procent : 60},
+        {id: 1, prew : 'Node', info : 'You are knon Node?', procent : 0},
         {id: 2, prew : 'React', info : 'You like React is ...', procent : 50}
     ];
 
@@ -64,7 +64,9 @@ export function Card(){
                 </button>
             </div>  
                 
-            
+            {
+                
+               array.map(item => (<><Print key = {item.id} prew={item.prew} info={item.info} procent={item.procent}/> <button onClick={(props)=> onDelClick(item.id)}>Del</button> </>)) }
         </>
     )
 
